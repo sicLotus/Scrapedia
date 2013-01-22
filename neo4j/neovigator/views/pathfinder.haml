@@ -1,0 +1,36 @@
+!!!
+%html
+  %head
+    %link(rel="stylesheet" href="/css/global.css")
+
+    %title Scrapedia - #{@pagetitle}
+  %body
+    %h1 Scrapedia
+    %h2 #{@pagetitle}
+    %p
+      #nav
+        %ol
+          %li
+            %a(href="/")Home
+          %li
+            %a(href="/statistics")Statistics
+          %li
+            %a(href="/pathfinder")PathFinder
+          %li
+            %a(href="/neovigator")Neovigator
+
+
+  %p
+    %hr
+      #search
+        %form{:action => "/pathfinder", :method => "get"}
+          %label Start article:
+          %input#neoid{:type => "text", :value => "#{@stitle}", :name => "stitle"}
+          %br
+          %label Target article:
+          %input#neoid{:type => "text", :value => "#{@dtitle}", :name => "dtitle"}
+          %br
+          %br
+          %input#loadnode{:type => "submit", :value => "Find Path", :class => "button"}
+      %hr
+      #{@pathstring}

@@ -1,0 +1,3 @@
+mkfs.ext4 /dev/xvdb
+mkdir /mnt/ssd1
+mount /dev/xvdb /mnt/ssd1/ -t ext4

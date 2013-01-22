@@ -1,0 +1,5 @@
+Outgoings:
+start n=node(X) match n-[:LINKS_TO]->m return ID(n),n.title,"LINKS_TO",ID(m),m.title;
+
+Incomings:
+start n=node(X) match m-[:LINKS_TO]->n return ID(n),n.title,"IS_LINK_OF",ID(m),m.title;

@@ -1,0 +1,11 @@
+sudo apt-get install build-essential
+sudo aptitude install ruby1.9.1-dev
+
+gem install rubygems-update
+/var/lib/gems/1.9.1/gems/rubygems-update-1.8.24/bin/update_rubygems
+
+apt-get install libxslt-dev libxml2-dev
+gem install neography
+gem install nokogiri
+
+gem install redis

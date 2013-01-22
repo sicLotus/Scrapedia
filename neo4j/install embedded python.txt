@@ -1,0 +1,27 @@
+http://capacitricks.posterous.com/installing-neo4j-and-python-embedded-bindings
+
+aptitude update
+aptitude safe-upgrade
+aptitude install default-jre-headless
+
+Add this line to the /etc/bash.bashrc file so that your systems knows where to find Java shared objects:
+
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk/jre
+Either edit the file or simply type:
+
+echo 'export JAVA_HOME=/usr/lib/jvm/java-6-openjdk/jre' >> /etc/bash.bashrc
+
+
+aptitude install python-jpype
+aptitude install python-pip
+pip install neo4j-embedded
+
+export CLASSPATH=/usr/lib/jvm/java-6-openjdk/jre/lib/
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk/jre/
+
+
+
+-------
+
+python and redis
+sudo pip install redis

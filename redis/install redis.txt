@@ -1,0 +1,45 @@
+Install Redis on Ubuntu
+notice: its important to set security group to redis
+
+sudo apt-get update
+sudo apt-get -y install build-essential
+sudo apt-get -y install tcl8.5
+sudo apt-get -y install ruby1.9.1
+sudo gem install redis
+
+wget http://download.redis.io/redis-stable.tar.gz
+tar xvzf redis-stable.tar.gz
+cd redis-stable
+make
+[optional:] make test
+
+cd src
+sudo su
+cp redis-server /usr/local/bin
+cp redis-cli /usr/local/bin
+
+cd redis-stable/utils
+./install_server.sh
+
+start server: sudo /etc/init.d/redis_6379 start
+stop server: sudo /etc/init.d/redis_6379 stop
+test running server: redis-cli ping
+
+sysctl vm.overcommit_memory=1
+
+--------------------
+get ip adress on ubuntu
+curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+--------------------
+
+Connect to Redis from Remote
+
+apt-get update
+apt-get -y install ruby1.9.1
+gem install redis
+
+require 'rubygems'
+require 'redis'
+r = Redis.new(:host => "79.125.75.198", :port => 6379)
+r.ping
+r.set('foo','bar')

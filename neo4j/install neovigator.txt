@@ -1,0 +1,33 @@
+apt-get update
+apt-get install ruby1.9.1
+apt-get install rubygems
+apt-get install rake
+apt-get install git
+[
+sudo apt-get install build-essential
+sudo aptitude install ruby1.9.1-dev
+gem install rubygems-update
+gem install neography
+]
+git clone git://github.com/maxdemarzi/neovigator.git
+cd neovigator
+bundle install
+
+rackup -p 8088
+
+@neo = Neography::Rest.new("http://ec2-54-246-55-197.eu-west-1.compute.amazonaws.com:3306")
+
+ incoming.merge(outgoing).each_pair do |key, value|
+        foo = value.collect{|v| v[:values]}
+        foo.each do |f|
+                f["name"]=f["title"]
+        end
+        attributes << {:id => key.split(':').last, :name => key, :values => foo }
+
+      end
+	  
+ @node = {:details_html => "<h2>Neo ID: #{node_id(node)}</h2>\n<p class='summary'>\n#{get_properties(node)}</p>\n",
+              :data => {:attributes => attributes,
+                        :name => node["data"]["title"],
+                        :id => node_id(node)}
+            }

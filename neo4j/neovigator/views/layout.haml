@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %link(rel="stylesheet" href="/css/global.css")
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
+    %script{:src => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"}
+    %script{:src => "/js/ui.js"}
+    %script{:src => "/js/processing.min.js"} 
+    
+    %title Neovigator
+
+  %body
+    %h1 Scrapedia
+    %canvas#neoviz
+    %header#title
+      %section#title
+        %h1 &nbsp;
+        %h2 Neovigator
+        %p 
+          %a{:href => "/"} Back to Index
+      %section#search
+        %form{:action => "/neovigator", :method => "get"}
+          %label Node ID:
+          %input#neoid{:type => "text", :value => "#{@neoid}", :name => "neoid"}
+          %input#loadnode{:type => "submit", :value => "Load", :class => "button"}
+      %br{:style => "clear: both;"}
+    %section#content
+      = yield
+    %aside
+      %div#explanation
+        %p
+          %h2 Manual
+          Simply enter a Node ID to use Neovigator.
+
+      <div id="browser_not_supported">
+      Your Browser is currently not supported.<br/><br/>Try one of these:<br/>
+      <a href="http://www.mozilla.com/en-US/firefox/firefox.html">Firefox 3.6</a><br/>
+      <a href="http://www.apple.com/safari/">Safari 4.0</a><br/>
+      <a href="http://www.google.com/chrome/">Chrome</a><br/>
+      </div>

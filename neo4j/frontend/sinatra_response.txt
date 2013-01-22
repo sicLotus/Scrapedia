@@ -1,0 +1,22 @@
+#Top20 LinksOut
+query = "start n=node(1, 15879, 36116, 66369) match p = n<-[:INSTANCE_OF]-m-[:LINKS_TO]->() return m.title as title, count(p) as count order by count desc limit 20"
+
+#Top20 LinksIn
+query = "start n=node(1, 15879, 36116, 66369) match p = ()-[:LINKS_TO]->m-[:INSTANCE_OF]->n return m.title as title, count(p) as count order by count desc limit 20"
+
+for row in db.query(query):
+    print row['title'] + " - " + str(row['count'])
+
+
+
+#search in file for incomings
+find /home/ubuntu -type f -name incomings | xargs grep Steinherz
+
+
+
+
+#response-sites
+http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/statistics/top20/mostlinked
+http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/statistics/top20/mostlinks
+http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/statistics/list/nolinks
+http://ec2-54-246-66-235.eu-west-1.compute.amazonaws.com:8088/statistics/list/unlinked

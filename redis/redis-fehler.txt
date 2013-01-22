@@ -1,0 +1,18 @@
+Skript laufen gut, plötzlich Verbindungsverlust zu Redis...
+Gibt es eine Grenze von Redis-Heap, Redis-List-Size?!
+Gibt es ne Art Redis-Monitoring? Log-Files?
+
+/var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:268:in `rescue in establish_connection': Error connecting to Redis on 79.125.75.198:6379 (ECONNREFUSED) (Redis::CannotConnectError)
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:263:in `establish_connection'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:69:in `connect'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:282:in `ensure_connected'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:173:in `block in process'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:248:in `logging'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:172:in `process'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis/client.rb:84:in `call'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis.rb:2183:in `block in method_missing'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis.rb:36:in `block in synchronize'
+        from /usr/lib/ruby/1.9.1/monitor.rb:211:in `mon_synchronize'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis.rb:36:in `synchronize'
+        from /var/lib/gems/1.9.1/gems/redis-3.0.2/lib/redis.rb:2182:in `method_missing'
+        from wiki.rb:25:in `<main>'
