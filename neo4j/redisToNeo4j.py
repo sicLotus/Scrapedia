@@ -1,13 +1,8 @@
-#Next Changes:
-# XML Structure for Forwarding fw -> afw
-# artikel haben scheinbar manchmal keinen title -> if none title=unknown
-
 from neo4j import GraphDatabase 
 from xml.dom.minidom import parseString 
 import redis 
 import time
 
-#db = GraphDatabase("/home/ubuntu/neo4j-community-1.8.1/data/graph.db")
 db = GraphDatabase("/mnt/neo4j_full") 
 r = redis.StrictRedis(host='176.34.212.62', port=6379, db=0) 
 cypherRedisKey = r.get("cypherQueries") 
@@ -37,15 +32,18 @@ def link_to(page, forwarding, url, title):
 def get_page(url):
 	return page_idx['url'][url].single
 
+def createIndex():
+	with db.transaction:
+		pages = db.node()
+		db.reference_node.PAGES(pages)
+		page_idx = db.node.indexes.create('pages')
+
 with db.transaction:
-	# An index, helps us rapidly look up pages
 	pages = db.getNodeById(1)
 	if db.node.indexes.exists('pages'):
 		page_idx = db.node.indexes.get('pages')
 	else:
-		pages = db.node(url="http://de.wikipedia.org", title="Wikipedia")
-		db.reference_node.PAGES(pages)
-		page_idx = db.node.indexes.create('pages') 
+		createIndex()
 
 while True:
 	if nodes % 100 == 0:
