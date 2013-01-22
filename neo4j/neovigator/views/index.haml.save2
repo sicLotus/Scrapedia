@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %link(rel="stylesheet" href="/css/global.css")
+
+    %title Scrapedia - #{@pagetitle}
+  %body
+    %h1
+    %h2 #{@pagetitle}
+    %p
+      #nav
+        %ol
+          %li
+            %a(href="/")Home
+          %li
+            %a(href="/statistics")Statistics
+          %li
+            %a(href="/pathfinder")PathFinder
+          %li
+            %a(href="/neovigator")Neovigator
+
