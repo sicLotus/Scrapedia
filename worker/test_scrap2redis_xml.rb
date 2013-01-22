@@ -7,21 +7,6 @@ require 'neography'
 require 'redis'
 require 'cgi'
 
-# start n=node(50000) match n-[:LINKS_TO]->m return ID(n),n.title,"LINKS_TO",ID(m),m.title;
-
-#@redis = Redis.new(:host => "46.137.39.99", :port => 6379)
-#@neo4j = Neography::Rest.new({:server => @redis.get("neo4jIP"), :port => @redis.get("neo4jPort")})
-
-#@urlWiki = @redis.get("wikipediaUrl")
-#@rTitleList = @redis.get("redisKeyForWikipediaTitles")
-#@rTitleListFAIL = @redis.get("redisKeyForWikipediaTitles.FAIL")
-
-#@rCypherQueryList = @redis.get("cypherQueries")
-
-#@rTitleList = @redis.get("redisTemp")
-#@rTitleListFAIL = @redis.get("redisTempFailure")
-
-
 @deleteKeys = ["Spezial:", "Diskussion:", "Benutzer:", "Wikipedia:", 
 	"Wikipedia_Diskussion:", "Datei:", "Datei_Diskussion:", 
 	"MediaWiki:", "MediaWiki_Diskussion:", "Vorlage:", "Vorlage_Diskussion:", 
@@ -63,7 +48,6 @@ def scrapeWikiPage(urlWiki, urlTitle)
 		article += "</als></a>"
 
 		puts article
-		#@redis.LPUSH(@rCypherQueryList, article)
 		puts "article added to redis: #{title}"
 
 end
@@ -81,28 +65,3 @@ def saveError(source, e)
 end
 
 scrapeWikiPage("http://de.wikipedia.org/wiki/", "!")
-
-# rc = 0
-
-# loop do
-        # while title = @redis.RPOP(@rTitleList)
-                # begin
-                        # scrapeWikiPage(@urlWiki, title)
-                        # rc = 0
-                # rescue => e
-                        # @redis.LPUSH(@rTitleListFAIL, title)
-                        # saveError(@urlWiki+title, e)
-                        # e.backtrace.each { |line| puts line }
-                # end
-        # end
-
-        # if(rc==0)
-          # print "waiting for new titles in redis list ..."
-        # else
-          # if(rc%1000==0)
-            # print "."
-          # end
-        # end
-
-        # rc+=1
-# end
