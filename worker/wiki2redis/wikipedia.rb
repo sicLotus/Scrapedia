@@ -1,3 +1,5 @@
+#deprecated, use instead titles2redis
+
 require 'rubygems'
 require 'net/http'
 require 'uri'
