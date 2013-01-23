@@ -1,3 +1,5 @@
+#download all titles from wikipedia in a file and push them on redis
+
 require 'rubygems'
 require 'redis'
 require 'cgi'

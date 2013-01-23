@@ -1,3 +1,5 @@
+#initialize redis with redis.properties
+
 require 'rubygems'
 require 'redis'
 

@@ -1,4 +1,4 @@
-#deprecated, use instead titles2redis
+#deprecated, use instead titles2redis.rb
 
 require 'rubygems'
 require 'net/http'

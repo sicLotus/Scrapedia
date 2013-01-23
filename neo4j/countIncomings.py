@@ -1,3 +1,5 @@
+#count incomings of al wiki titles
+
 from neo4j import GraphDatabase
 db = GraphDatabase("/mnt/neo4j_full")
 
@@ -6,7 +8,6 @@ def writeIncomings(arr):
 	with open('/home/ubuntu/incomings', 'w') as f:
         	for e in arr:
                 	f.write(e[0] + ", " + str(e[1])+", "+str(e[2])+"\n")
-
 
 i = 0
 for anode in db.nodes:
@@ -17,11 +18,7 @@ for anode in db.nodes:
 	if i % 1000 == 0:
 		writeIncomings(arr)
 	
-
-arr.sort(key=lambda v:v[1], reverse=True)
-with open('/home/ubuntu/incomings', 'w') as f:
-	for e in arr:
-		f.write(e[0] + ", " + str(e[1])+"\n")
+writeIncomings(arr)
 
 db.shutdown()
 

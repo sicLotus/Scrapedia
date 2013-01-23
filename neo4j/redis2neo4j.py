@@ -1,3 +1,5 @@
+#put xml data from redis in neo4j database
+
 from neo4j import GraphDatabase 
 from xml.dom.minidom import parseString 
 import redis 
@@ -52,7 +54,6 @@ while True:
 	query = r.rpop(cypherRedisKey)
 	
 	if query is None:
-#		print "No Entry found in Redis! Waiting for 10 Seconds."
 		time.sleep(10)
 		continue;
 		

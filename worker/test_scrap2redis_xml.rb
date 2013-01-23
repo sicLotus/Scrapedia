@@ -1,4 +1,6 @@
-﻿require 'nokogiri'
+﻿#simple test script
+
+require 'nokogiri'
 require 'open-uri'
 
 require 'rubygems'

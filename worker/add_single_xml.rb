@@ -1,4 +1,6 @@
-﻿require 'nokogiri'
+﻿#script for scraping a single title to redis
+
+require 'nokogiri'
 require 'open-uri'
 
 require 'rubygems'
@@ -13,14 +15,8 @@ add_article = "Deutschland" #urltitle
 @neo4j = Neography::Rest.new({:server => @redis.get("neo4jIP"), :port => @redis.get("neo4jPort")})
 
 @urlWiki = @redis.get("wikipediaUrl")
-#@rTitleList = @redis.get("redisKeyForWikipediaTitles")
-#@rTitleListFAIL = @redis.get("redisKeyForWikipediaTitles.FAIL")
 
-#@rCypherQueryList = @redis.get("cypherQueries")
 @rCypherQueryList = @redis.get("cypherQueries2")
-
-#@rTitleList = @redis.get("redisTemp")
-#@rTitleListFAIL = @redis.get("redisTempFailure")
 
 @deleteKeys = ["Spezial:", "Diskussion:", "Benutzer:", "Wikipedia:", 
 	"Wikipedia_Diskussion:", "Datei:", "Datei_Diskussion:", 
@@ -37,11 +33,11 @@ def scrapeWikiPage(urlWiki, urlTitle)
         article = "<a><at>#{CGI::escape(title)}</at><au>#{urlWiki+urlTitle}</au>"
 		
         links = doc.css('div#mw-content-text a').map { |link|
-                ( link['href'].byteslice(0,6)=="/wiki/" #keine steuerungsseiten
+                ( link['href'].byteslice(0,6)=="/wiki/" #no control sites
                 ) ? {"url" => (urlWiki.gsub("/wiki/", "") + "#{(link['href'].index('#')!=nil)?link['href'][0..(link['href'].index('#')-1)]:link['href']}"), "title" => CGI::escape(((link['title']!=nil)?link['title']:((link.text!=nil)?link.text:"unknown")))} : nil}
         links.delete(nil) 
 			
-		#url-duplikate entfernen
+		#delete url-duplikcates
 		links = links.inject({}) do |r, h| 
 		  (r[h["url"]] ||= {}).merge!(h){ |key, old, new| old || new }
 		  r

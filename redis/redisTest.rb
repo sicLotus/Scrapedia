@@ -1,3 +1,5 @@
+#simple testscript for xml data in redis
+
 require 'rubygems'
 require 'redis'
 require 'cgi'
