@@ -297,22 +297,21 @@ class Neovigator < Sinatra::Application
 
   get '/statistics/top20/mostlinked' do
     content_type :json
-    "[['Artikel1', '<a href=\"url1\">Article1</a>', 'linkedNumber'],['Artikel2', '<a href=\"url2\">Article2</a>', 'linkedNumber'],['Artikel3', '<a href=\"url3\">Article3</a>', 'linkedNumber']]"
+    File.read("../statistics/top20mostLinked.json")
   end
 
   get '/statistics/top20/mostlinks' do
     content_type :json
-    "[['Artikel1', '<a href=\"url1\">Article1</a>', 'numberOfLinks'],['Artikel2', '<a href=\"url2\">Article2</a>', 'numberOfLinks'],['Artikel3', '<a href=\"url3\">Article3</a>', 'linkedNumber']]"
+    File.read("../statistics/top20mostLinks.json")
   end
 
   get '/statistics/list/nolinks' do
     content_type :html
-    '<ul><li><a href="url">ArtikelName#1</a></li><li><a href="url">ArtikelName#2</a></li><li><a href="url">ArtikelName#3</a></li></ul>'
+    File.read("../statistics/nolinks.json")
   end
 
   get '/statistics/list/unlinked' do
     content_type :html
-    '<ul><li><a href="url">ArtikelName#1</a></li><li><a href="url">ArtikelName#2</a></li><li><a href="url">ArtikelName#3</a></li></ul>'
+        File.read("../statistics/unlinked.json")
   end
-
 end
